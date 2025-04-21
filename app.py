@@ -249,7 +249,6 @@ if st.button("Calcular Temperatura da Face Fria"):
 st.markdown("""
 ---
 > **Observação:** Emissividade de **0.9** considerada no cálculo.
----
 > **Nota:** Os cálculos são realizados de acordo com a norma ASTM C680.
 """)
 
