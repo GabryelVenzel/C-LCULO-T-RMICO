@@ -244,6 +244,12 @@ if st.button("Calcular Temperatura da Face Fria"):
         perda_sem = q_sem_isolante / 1000
         st.warning(f"Perda total sem o uso de isolante: {str(perda_sem).replace('.', ',')[:6]} kW/m²")
 
+    # --- NOTA DE CONFORMIDADE COM A NORMATIVA ---
+    st.markdown("""
+    ---
+    > **Nota:** Os cálculos foram realizados de acordo com a norma ASTM C680.
+    """)
+
 # --- OBSERVAÇÃO ---
 st.markdown("""
 ---
