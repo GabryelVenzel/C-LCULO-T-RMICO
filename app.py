@@ -5,20 +5,10 @@ from PIL import Image
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
-import locale
+import json
 
 # --- CONFIGURAÇÕES GERAIS ---
 st.set_page_config(page_title="Calculadora IsolaFácil", layout="wide")
-locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-
-# Tentar configurar o locale para pt_BR, caso contrário, usa en_US
-try:
-    locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
-except locale.Error:
-    try:
-        locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')  # Caso falhe, use 'en_US.UTF-8'
-    except locale.Error:
-        pass  # Caso não consiga definir nenhum locale, não faça nada
 
 # --- ESTILO VISUAL ---
 st.markdown("""
@@ -50,8 +40,6 @@ logo = Image.open("logo.png")
 st.image(logo, width=300)
 
 # --- CONECTAR COM GOOGLE SHEETS ---
-import json
-
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 gcp_json = json.loads(st.secrets["GCP_JSON"])
 credentials = ServiceAccountCredentials.from_json_keyfile_dict(gcp_json, scope)
@@ -142,7 +130,7 @@ with st.sidebar.expander("Opções", expanded=False):
                 k_func = f"{k0} + {k1}*T + {k2}*T**2 + {k3}*T**3 + {k4}*T**4"
                 equacao_latex = (
                     f"k(T) = {str(k0).replace('.', ',')} + {str(k1).replace('.', ',')} \\cdot T + "
-                    f"{str(k2).replace('.', ',')} \\cdot T^2 + {str(k3).replace('.', ',')} \\cdot T^3 + "
+                    f"{str(k2).replace('.', ',')} \\cdot T^2 + {str(k3).replace(".", ",")} \\cdot T^3 + "
                     f"{str(k4).replace('.', ',')} \\cdot T^4"
                 )
 
