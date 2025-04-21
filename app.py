@@ -5,7 +5,6 @@ from PIL import Image
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
-import json
 
 # --- CONFIGURAÇÕES GERAIS ---
 st.set_page_config(page_title="Calculadora IsolaFácil", layout="wide")
@@ -40,6 +39,8 @@ logo = Image.open("logo.png")
 st.image(logo, width=300)
 
 # --- CONECTAR COM GOOGLE SHEETS ---
+import json
+
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 gcp_json = json.loads(st.secrets["GCP_JSON"])
 credentials = ServiceAccountCredentials.from_json_keyfile_dict(gcp_json, scope)
@@ -248,3 +249,4 @@ st.markdown("""
 ---
 > **Observação:** Emissividade de **0.9** considerada no cálculo.
 """)
+
