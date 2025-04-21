@@ -11,6 +11,12 @@ import locale
 st.set_page_config(page_title="Calculadora IsolaFácil", layout="wide")
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
+# Tentar configurar o locale para pt_BR, caso contrário usa en_US
+try:
+    locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+except locale.Error:
+    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')  # Caso falhe, use 'en_US.UTF-8'
+
 # --- ESTILO VISUAL ---
 st.markdown("""
 <style>
